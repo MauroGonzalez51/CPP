@@ -25,7 +25,7 @@ int main()
 
         char nacionalidad[50];
         cout << "Ingrese su nacionalidad: ";
-        cin >> nacionalidad;
+        getline(cin, nacionalidad);
 
         if (edad >= 18) {
             if (sexo == 1) {
