@@ -45,8 +45,9 @@ int main() {
     return 0;
 }
 void rules() {
-    cout << endl << "Choose a number between 1 to 10 (Normal) or 1 to 100 (Hard)" << endl;
-    cout << "[ Depending on the mode (Hard mode win 25X, normal one 10X)" << endl;
+    cout << endl;
+    cout << "Normal mode (1-10) | Win 10X" << endl;
+    cout << "Hard mode (1-100) | Win 25X" << endl;
     cout << "Wrong bet, you lose al the money you bet ..." << endl;
     cout << "You only get one chance to guess" << endl;
 }
@@ -101,7 +102,6 @@ void game(float &balance, string playerName) {
             break;
     }
 
-    
     system("cls");
     do {
         int randomNumber = generateRandomNumber(gameMode);
