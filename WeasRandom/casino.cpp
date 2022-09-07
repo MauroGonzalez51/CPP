@@ -1,3 +1,6 @@
+// Tengo que refactorizar todo el codigo, haciendo uso de los include
+// Asi no queda tan largo este archivo :>
+
 #include <bits/stdc++.h>
 
 using namespace std;
