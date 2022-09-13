@@ -2,27 +2,26 @@
 
 using namespace std;
 
-int generateRandomNumber() {
-    srand(time(NULL));
-    return (rand() % (10 - 1));
-}
+const int FPS = 30;
 
-class machineSlots {
-    public:
-        int number;
+class slotMachine {
+	public:
+		int number;
+
+	void generateRandomNumber() {
+		this -> number = (1 + rand() % (11 -1));
+	};
+
+	
 };
 
 int main() {
-    int FPS = 30;
+	slotMachine slot1, slot2, slot3;
+	srand(time(NULL));
+	slot1.generateRandomNumber();
+	slot2.generateRandomNumber();
+	slot3.generateRandomNumber();
 
-    for (int i = 1; i <= FPS; i++) {
-        int slot1, slot2, slot3;
-
-        [slot1, slot2, slot3] = generateRandomNumber();
-
-        cout << slot1 << " " << slot2 << " " << slot3 << endl;
-    }
-
-
-    return 0;
 }
+
+
