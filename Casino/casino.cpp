@@ -1,9 +1,10 @@
 #include <bits/stdc++.h>
 #include <string.h>
 #include "modoJuegosCasino.h"
+#include "slotMachineGame.h"
+
 using namespace std;
 
-// Cambios en Stage
 int main() {
     system("cls");
     cout << "\n\tWelcome to the Casino" << endl;
@@ -32,6 +33,19 @@ int main() {
             cout << "-> ";
             cin >> gameMode;
             preGameHandler(gameMode, multiplier, playerName, balance);
+            break;
+        }
+        case 2: {
+            int coins;
+            cout << "(You're playing the \"Slot Machine\" game)" << endl;
+            cout << "(Here, we're talking about coins, keep that in mind)" << endl;
+
+            do {
+                cout << "Enter your inicial balance to play [Coins]: ";
+                cin >> coins;
+            } while (coins < 1);
+
+            slotMachineGame(playerName, coins);
             break;
         }
         default:
