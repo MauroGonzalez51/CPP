@@ -181,7 +181,7 @@ void slotMachineGame(string& playerName, int& coins) {
 
                 } else {
                     slotMachine slot1, slot2, slot3;
-                    int cantidadVeces = 100;
+                    int cantidadVeces = (timesPlayed / (timesPlayed * 100)) + 1;
 
                     srand(time(NULL));
 
@@ -194,6 +194,8 @@ void slotMachineGame(string& playerName, int& coins) {
                     cout << "| " << slot1.number << " | " << slot2.number << " | " << slot3.number << " | "<< endl;
 
                     searchingCoincidences(slot1.number, slot2.number, slot3.number, coins);
+                
+                    timesPlayed++;
                 }
 
             } else {
