@@ -42,7 +42,103 @@ void rules() {
     cout << "   - You lost what you bet [1 Coin]" << endl;
 }
 
+void manageCoins(int& coins, int& bettingAmount, bool userWin, int checkedCase, int twoSame, int threeSame) {
+    if (userWin) {
+        switch (checkedCase) {
+            case 2: {
+                cout << "You bet " << bettingAmount << " coin" << endl;
+                cout << "You win " << twoSame << " coins" << endl;
+                coins += twoSame;
+                break;
+            }
+            case 3: {
+                cout << "You bet " << bettingAmount << " coin" << endl;
+                cout << "You win " << threeSame * 2 << " coins" << endl;
+                coins += threeSame * 2;
+                break;
+            }
+            case 777: {
+                cout << "You bet " << bettingAmount << " coin" << endl;
+                cout << "You win 777 coins" << endl;
+                coins += 777;
+                break; 
+            }
+            default: {
+                cout << "How did I get here?" << endl;
+            }
+        }
+    } else {
+        cout << "You have Lost one coin :>" << endl;
+    }
+}
+
 void searchingCoincidences(int num1, int num2, int num3, int& coins, int& bettingAmount) { 
+    // cout << num1 << " " << num2 << " " << num3 << endl;
+
+    array <int, 3> numbers = { num1, num2, num3 };
+    array <int, 3> repeatNumbers;
+    repeatNumbers.fill(0);
+
+    bool checkNextCase = true;
+    // There are all different?
+    {
+        for (int i = 0; i < numbers.size(); i++) {
+            int times = 0;
+            for (int j = 0; j < numbers.size(); j++) {
+                if (numbers[i] == numbers[j])
+                    times++;    
+            }
+            cout << "Number: " << numbers[i] << ", repeat: " << times << endl;
+
+            if (times >= 2) 
+                repeatNumbers[i] = numbers[i];
+        }
+        // What all this code do is check for repeated numbers, and then pushing 
+        // into a new array ...
+
+        int counter = 0;
+        for (auto i : repeatNumbers) {
+            if (i == 0)
+                counter++;
+        }
+
+        if (counter == 3) {
+            cout << "There are all different :>" << endl;
+            checkNextCase = false;
+        }
+
+    };
+
+    // Checking the "repeated numbers" ...
+
+    // 1 Case: Pair of numbers
+    if (checkNextCase) {   
+        int pairNumber;
+        for (auto i : repeatNumbers) {
+            if (i != 0) {
+                pairNumber = i;
+                break;
+            }
+        }
+
+        cout << "Pair: " << pairNumber << endl;
+        manageCoins(int& coins, int& bettingAmount, true, 2, pairNumber, 0);
+        checkNextCase = false;
+    }
+
+    // 2 Case: All the same
+    if (checkNextCase) {
+        int threeNumber, times = 0, sample = repeatNumbers[0];
+        for (auto i : repeatNumbers) {
+            if (i == sample)
+                times++;
+        }
+
+        if (times == 3) {
+            cout << "Three: " << threeNumber << endl;
+            manageCoins(int& coins, int& bettingAmount, true, 3, 0, threeNumber);
+        }
+    }
     
 }
 
