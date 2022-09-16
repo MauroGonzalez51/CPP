@@ -51,5 +51,7 @@ int main() {
         default:
             cout << "There isn't any game mode which fits with the option entered ..." << endl;
     }
+    cout << "Prees any key to exit ..." << endl;
+    getch();
     return 0;
 }
