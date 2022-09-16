@@ -2,7 +2,6 @@
 
 using namespace std;
 
-int cantidadVeces = 30;
 bool cheatingEnabled = false;
 
 class slotMachine {
@@ -42,53 +41,24 @@ void rules() {
     cout << "   - You lost what you bet [1 Coin]" << endl;
 }
 
-void manageCoins(int& coins, int& bettingAmount, bool userWin, int checkedCase, int twoSame, int threeSame) {
-    if (userWin) {
-        switch (checkedCase) {
-            case 2: {
-                cout << "You bet " << bettingAmount << " coin" << endl;
-                cout << "You win " << twoSame << " coins" << endl;
-                coins += twoSame;
-                break;
-            }
-            case 3: {
-                cout << "You bet " << bettingAmount << " coin" << endl;
-                cout << "You win " << threeSame * 2 << " coins" << endl;
-                coins += threeSame * 2;
-                break;
-            }
-            case 777: {
-                cout << "You bet " << bettingAmount << " coin" << endl;
-                cout << "You win 777 coins" << endl;
-                coins += 777;
-                break; 
-            }
-            default: {
-                cout << "How did I get here?" << endl;
-            }
-        }
-    } else {
-        cout << "You have Lost one coin :>" << endl;
-    }
-}
-
-void searchingCoincidences(int num1, int num2, int num3, int& coins, int& bettingAmount) { 
+void searchingCoincidences(int num1, int num2, int num3, int& coins) { 
     // cout << num1 << " " << num2 << " " << num3 << endl;
 
     array <int, 3> numbers = { num1, num2, num3 };
     array <int, 3> repeatNumbers;
     repeatNumbers.fill(0);
 
-    bool checkNextCase = true;
+    bool checkNextCase = true, userWin = false;
     // There are all different?
     {
+        cout << endl;
         for (int i = 0; i < numbers.size(); i++) {
             int times = 0;
             for (int j = 0; j < numbers.size(); j++) {
                 if (numbers[i] == numbers[j])
                     times++;    
             }
-            cout << "Number: " << numbers[i] << ", repeat: " << times << endl;
+            cout << "Number: " << numbers[i] << " -> repeat: " << times << endl;
 
             if (times >= 2) 
                 repeatNumbers[i] = numbers[i];
@@ -103,7 +73,8 @@ void searchingCoincidences(int num1, int num2, int num3, int& coins, int& bettin
         }
 
         if (counter == 3) {
-            cout << "There are all different :>" << endl;
+            cout << endl << "There are all different :>" << endl;
+            cout << "You lost [1] coin" << endl;
             checkNextCase = false;
         }
 
@@ -121,9 +92,13 @@ void searchingCoincidences(int num1, int num2, int num3, int& coins, int& bettin
             }
         }
 
-        cout << "Pair: " << pairNumber << endl;
-        manageCoins(int& coins, int& bettingAmount, true, 2, pairNumber, 0);
+        // cout << "Pair: " << pairNumber << endl;
+        cout << "You have won!" << endl;
+        cout << pairNumber << " coin(s) ..." << endl;
+        coins += pairNumber;
+        
         checkNextCase = false;
+        userWin = true;
     }
 
     // 2 Case: All the same
@@ -135,47 +110,100 @@ void searchingCoincidences(int num1, int num2, int num3, int& coins, int& bettin
         }
 
         if (times == 3) {
-            cout << "Three: " << threeNumber << endl;
-            manageCoins(int& coins, int& bettingAmount, true, 3, 0, threeNumber);
+            // cout << "Three: " << threeNumber << endl;
+            
+            cout << "You have won!" << endl;
+            cout << threeNumber * 2 << " coin(s) ..." << endl;
+            coins += threeNumber * 2;    
+
+            checkNextCase = false;   
+            userWin = true; 
         }
     }
-    
+
+    if (checkNextCase) {
+        int sevenNumber = 0;
+        for (auto i : repeatNumbers) {
+            if (i == 7)
+                sevenNumber++;
+        }
+
+        if (sevenNumber == 3) {
+            cout << "You have won!" << endl;
+            cout << "777 coins" << endl;
+
+            checkNextCase = false;
+            userWin = true;
+        }
+    }
+
+    if (!userWin) 
+        cout << endl <<  "[...]" << endl;
 }
 
 void slotMachineGame(string& playerName, int& coins) {
     rules();
+    int timesPlayed = 0;
     do {
-        char msgIn[3];
-        cout << endl;
-        cout << "Coins: " << coins << endl;
-        cout << "Hey, " << playerName << ", wanna play?" << endl;
-        cout << "-> ";
-        cin >> msgIn;
+        if (timesPlayed >= 5) {
+            cheatingEnabled = true;
+        }
 
-        if(validateMsg(msgIn)) {
-            cout << "[...]" << endl;
-            int bettingAmount = 1;
-            coins -= bettingAmount;
+        if (coins >= 1) {
+            char msgIn[3];
+            cout << endl;
+            cout << "Coins: " << coins << endl << endl;
+            cout << "Hey, " << playerName << ", wanna play?" << endl;
+            cout << "-> ";
+            cin >> msgIn;
 
-            if(!cheatingEnabled) {
-                slotMachine slot1, slot2, slot3;
-                int cantidadVeces = 30;
+            if(validateMsg(msgIn)) {
+                cout << "[...]" << endl << endl;
+                int bettingAmount = 1;
+                coins -= bettingAmount;
 
-                srand(time(NULL));
+                if(!cheatingEnabled) {
+                    slotMachine slot1, slot2, slot3;
+                    int cantidadVeces = 30;
 
-                for (int i = 0; i < cantidadVeces; i++) {
-                    slot1.generateRandomNumber();
-                    slot2.generateRandomNumber();
-                    slot3.generateRandomNumber();
+                    srand(time(NULL));
+
+                    for (int i = 0; i < cantidadVeces; i++) {
+                        slot1.generateRandomNumber();
+                        slot2.generateRandomNumber();
+                        slot3.generateRandomNumber();
+                    }
+                    cout << "| " << slot1.number << " | " << slot2.number << " | " << slot3.number << " |"<< endl;
+
+                    searchingCoincidences(slot1.number, slot2.number, slot3.number, coins);
+
+                    timesPlayed++;
+
+                } else {
+                    slotMachine slot1, slot2, slot3;
+                    int cantidadVeces = 100;
+
+                    srand(time(NULL));
+
+                    for (int i = 0; i < cantidadVeces; i++) {
+                        slot1.generateRandomNumber();
+                        slot2.generateRandomNumber();
+                        slot3.generateRandomNumber();
+                    }
+
+                    cout << "| " << slot1.number << " | " << slot2.number << " | " << slot3.number << " | "<< endl;
+
+                    searchingCoincidences(slot1.number, slot2.number, slot3.number, coins);
                 }
-                cout << "| " << slot1.number << " | " << slot2.number << " | " << slot3.number << " |"<< endl;
 
-                searchingCoincidences((int) slot1.number, (int) slot2.number, (int) slot3.number, coins, bettingAmount);
+            } else {
+                cout << "OK" << endl;
+                break;
             }
+        }
 
-
-        } else {
-            cout << "OK" << endl;
+        if (coins == 0) {
+            cout << "No coins found" << endl;
             break;
         }
 

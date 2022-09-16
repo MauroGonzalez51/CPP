@@ -9,6 +9,7 @@ using namespace std;
 int displayGames() {
     cout << endl;
     int option;
+    cout << "Games" << endl;
     cout << "1. Guess a number" << endl;
     cout << "2. Slot machine" << endl;
     cout << "[...]" << endl;
