@@ -97,7 +97,7 @@ void normalGameMode(bool triesEnabled, string& playerName, float& balance, int& 
                     cin >> guess;
                 } while ((guess < 1) || (guess > 100));
 
-                if (guess = randomNumber) {
+                if (guess == randomNumber) {
                     cout << "You have won " << bettingAmount * multiplier << "$" << endl;
                     balance += bettingAmount * multiplier;
                     break;

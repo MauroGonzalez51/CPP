@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <conio.h>
 #include <string.h>
 #include "modoJuegosCasino.h"
 #include "slotMachineGame.h"
