@@ -108,7 +108,7 @@ void searchingCoincidences(int num1, int num2, int num3, int& coins) {
             if (i == sample)
                 times++;
         }
-./.
+
         if (times == 3) {
             // cout << "Three: " << threeNumber << endl;
             
