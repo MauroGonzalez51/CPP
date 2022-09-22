@@ -2,27 +2,78 @@
 
 using namespace std;
 
-const double PI = 3.141592654;
-
-class Volume {
+class Personas {
     public:
-        float radius, height;
-
-        float calculateVolume() {
-            return (PI * (pow(this -> radius,2)) * (this -> height));
-        }
+        string nombre, code;
 };
 
+class Estudiantes : public Personas {
+    private:
+        string name, code;
+        int age;
+    public:
+        Estudiantes(string name, string code, int age) {
+            this -> name = name;
+            this -> code = code;
+            this -> age = age;
+        }  
+
+        string getName(); 
+        string getCode();
+        int getAge();
+};
+
+string Estudiantes::getName() {
+    return this -> name;
+}
+
+string Estudiantes::getCode() {
+    return this -> code;
+}
+
+int Estudiantes::getAge() {
+    return this -> age;
+}
+
+
+class Profesores : public Personas {
+    private:
+        string name, code, cc;
+        int age;
+
+        Profesores(string name, string code, string cc, int age) {
+            this -> name = name;
+            this -> code = code;
+            this -> cc = cc;
+            this -> age = age;
+        }
+
+        string getName();
+        string getCode();
+        string getCC();
+        int getAge();
+};
+
+string Profesores::getName() {
+    return this -> name;
+}
+
+string Profesores::getCode() {
+    return this -> code;
+}
+
+string Profesores::getCC() {
+    return this -> cc;
+}
+
+int Profesores::getAge() {
+    return this -> age;
+}
 
 int main(void) {
-    Volume obj1;
+   Estudiantes obj1("Mauro", "82973052", 17);
 
-    cout << "Radius: ";
-    cin >> obj1.radius;
-
-    cout << "Height: ";
-    cin >> obj1.height;
-
-    cout << "Volume: " << obj1.calculateVolume() << endl;
+   cout << obj1.getName() << endl;
+   cout << obj1.getAge() << endl;
 
 }
