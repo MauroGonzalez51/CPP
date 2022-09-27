@@ -1,35 +1,49 @@
 #include <bits/stdc++.h>
+#include <vector>
 
 using namespace std;
 
-void writeLog(string msgToLog);
+class Fracciones {
+    public:
+        int numerador, denominador;
+};  
 
-int main() {
+void setDivisores(Fracciones& fraccion) {
+    vector <int> numerador;
+    vector <int> denominador;
 
-    string msg;
+    for (int i = 0; i < fraccion.numerador; i++) {
+        if ((fraccion.numerador % i) == 0) {
+            numerador.push_back(i);
+            cout << i << endl;
+        }
+    }
 
-    do {
-        cout << "-> ";
-        cin >> msg;
+    for (int i = 0; i < fraccion.denominador; i++) {
+        if ((fraccion.denominador % i) == 0) {
+            denominador.push_back(i);
+        }
+    }
 
-        writeLog(msg);
-
-    } while (true);
-
-    return 0;
+    
 }
 
+int main() {
+    system("cls");
+    cout << "Simplificador de Fracciones" << endl;
+
+    Fracciones fraccion;
+
+    cout << "Numerador: ";
+    cin >> fraccion.numerador;
+
+    do {
+        cout << "Denominador: ";
+        cin >> fraccion.denominador;
+    } while (fraccion.denominador == 0);
+
+    setDivisores(fraccion);
 
 
-void writeLog(string msgToLog) {
-    time_t now = time(0);
-    char* dateTime = ctime(&now);
-
-    ofstream logFile(
-        "logFile.txt", ios_base::out | ios_base::app );
-    
-    string date = dateTime;
-
-    string msgIn = date + " -> " + msgToLog;
-    logFile << msgIn; 
+    return 0;
 }

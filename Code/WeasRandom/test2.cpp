@@ -48,8 +48,5 @@ string aprueba(float notaFinal) {
 
 bool validarNotas (float nota) {
     // Retornar true significa que la nota es valida
-    if ((nota >= 0) && (nota <= 5.0))
-        return true;
-    else
-        return false;
+    return (((nota >= 0) && (nota <= 5.0)) ? true : false);
 }
