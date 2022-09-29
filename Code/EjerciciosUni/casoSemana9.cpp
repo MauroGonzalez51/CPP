@@ -85,7 +85,6 @@ float coeficienteCorrelacion() {
 int main() {
     unsigned tiempoInicial, tiempoFinal;
 
-
     int cantidadJugadores;
 
     do {
