@@ -56,7 +56,7 @@ bool Students::validateName() {
 }
 
 bool Students::validateGenre() {
-    bool isValid = true;
+    bool isValid = false;
 
     array <int, 3> validEntries = {1, 2, 3};
     for (int i : validEntries) {
@@ -68,7 +68,7 @@ bool Students::validateGenre() {
 }
 
 bool Students::validateEducationLevel() {
-    bool isValid = true;
+    bool isValid = false;
 
     array <int, 4> validEntries = {1, 2, 3, 4};
     for (auto i : validEntries) {
@@ -80,7 +80,7 @@ bool Students::validateEducationLevel() {
 }
 
 bool Students::validateStratum() {
-    bool isValid = true;
+    bool isValid = false;
 
     array <int, 6> validEntries = {1, 2, 3, 4, 5, 6};
     for (auto i : validEntries) {
@@ -92,7 +92,7 @@ bool Students::validateStratum() {
 }
 
 bool Students::validateYear() {
-    bool isValid = true, checkNextCase = true;
+    bool isValid = false, checkNextCase = true;
 
     if (checkNextCase) {
         time_t currentTime;
@@ -123,7 +123,7 @@ bool Students::validateYear() {
 }
 
 bool Students::validateMonth() {
-    bool isValid = true;
+    bool isValid = false;
 
     ((this -> birthDate.month >= 1) && (this -> birthDate.month <= 12)) ? isValid = true : isValid = false;
 
@@ -131,7 +131,7 @@ bool Students::validateMonth() {
 }
 
 bool Students::validateDay() {
-    bool isValid = true, checkNextCase = true;
+    bool isValid = false, checkNextCase = true;
 
     if (checkNextCase) {
         array <int, 7> validEntriesMonth = {1, 3, 5, 7, 8, 10, 12};
@@ -191,7 +191,7 @@ bool Students::validateDay() {
 }
 
 bool Students::validateMaritalStatus() {
-    bool isValid = true;
+    bool isValid = false;
 
     ((this -> maritalStatus >= 1) && (this -> maritalStatus <=5)) ? 
         isValid = true : isValid = false;
@@ -200,7 +200,7 @@ bool Students::validateMaritalStatus() {
 }
 
 bool Students::validateSalary() {
-    bool isValid = true;
+    bool isValid = false;
 
     (this -> salary >= 1000000) ? isValid = true : isValid = false;
 
