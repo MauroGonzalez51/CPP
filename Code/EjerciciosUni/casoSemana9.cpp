@@ -1,3 +1,14 @@
+/**
+ *  @group:
+ *       - Mauro Alonso Gonzalez Figueroa       T00067622   Ing. Sistemas
+ *       - Juan Jose Jimenez Guardo             T00068278   Ing. Sistemas
+ *       - Maria Isabel Barrios Verbel          T00068465   Ing. Industrial
+ * 
+ *  @date: 02/10/2022
+ * 
+ *
+ * */
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -126,7 +137,7 @@ int main() {
     variablesControl.desviacionEstatura = sqrt(variablesControl.sumatoriaCuadradosEstatura / cantidadJugadores);
     variablesControl.desviacionPeso = sqrt(variablesControl.sumatoriaCuadradosPeso / cantidadJugadores);
 
-    cout << "Coeficiente de Correlacion: " << coeficienteCorrelacion() << endl;
+    cout << endl << "Coeficiente de Correlacion: " << coeficienteCorrelacion() << endl;
 
     tiempoFinal = clock();
     double time = (double(tiempoFinal - tiempoInicial) / CLOCKS_PER_SEC);
