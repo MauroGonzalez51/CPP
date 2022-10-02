@@ -1,8 +1,9 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <array>
 #include <conio.h>
 #include <string.h>
-#include "modoJuegosCasino.h"
-#include "slotMachineGame.h"
+#include "modoJuegosCasino.cpp"
+#include "slotMachineGame.cpp"
 
 using namespace std;
 

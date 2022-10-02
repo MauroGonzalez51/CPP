@@ -1,7 +1,8 @@
 // Funciones en general para el programa :>
 
-#include <bits/stdc++.h>
 #include <iostream>
+#include <time.h>
+#include <array>
 #include <string.h>
 
 using namespace std;
@@ -404,3 +405,4 @@ void preGameHandler(int& gameMode, int& multiplier, string& playerName, float& b
             normalGameMode(false, playerName, balance, gameMode, multiplier);
     }
 }
+

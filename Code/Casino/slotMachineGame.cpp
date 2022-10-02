@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <time.h>
+#include <string.h>
+#include <array>
 
 using namespace std;
 
@@ -12,7 +15,7 @@ class slotMachine {
 		this -> number = (1 + rand() % (10 - 1));
 	}
 };
-
+bool validateMsg(char msg[3]);
 
 void rules() {
     cout << "[Rules]" << endl;
