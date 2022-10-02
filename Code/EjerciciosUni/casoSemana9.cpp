@@ -27,8 +27,8 @@ class Jugadores {
         }
 };
 
-// Estrucuta de control que guarda las variables "Importantes"
-// En resumen, agrupar varias variables en un solo lugar con scope global
+// Estructura de control que guarda las variables "Importantes"
+// En resumen, se agrupan varias variables en un solo lugar con scope global
 struct {
     float promedioEstatura, promedioPeso;
     
@@ -61,7 +61,7 @@ void pedirPeso(Jugadores& jugador, int posicion) {
     } while (jugador.validarPeso());
 }
 
-// Funcion para calcular el promedio dependiendo de lo que queramos
+// Funcion para calcular el promedio dependiendo de lo que se requiera
 // La variable proceso controla que promedio se va a calcular :>
 void calcularPromedio(Jugadores& jugador, float& sumaTotal, int proceso) {
     switch(proceso) {
@@ -79,7 +79,7 @@ void calcularPromedio(Jugadores& jugador, float& sumaTotal, int proceso) {
     }
 }
 
-// Funcion para calcular la desviacion dependiendo de lo que queramos
+// Funcion para calcular la desviacion dependiendo de lo que se requiera
 // La variable proceso controla la desviacion que se va a calcular :>
 void calcularDesviacion(Jugadores& jugador, int proceso) {
     switch (proceso) {
@@ -109,7 +109,7 @@ int main() {
     // Variables que solo pueden guardar datos positivos o cero
     unsigned tiempoInicial, tiempoFinal;
 
-    // Variable de controlo que guarla la cantidad de jugadores que se van a estudiar
+    // Variable de control que guarda la cantidad de jugadores que se van a estudiar
     int cantidadJugadores;
 
     do {
@@ -117,10 +117,10 @@ int main() {
         cin >> cantidadJugadores;
     } while (cantidadJugadores < 1);
 
-    // Creando un array de objetos con el tamaño de la cantidad de jugadores
+    // Se crea un array de objetos con el tamaño de la cantidad de jugadores
     Jugadores jugadores[cantidadJugadores];
 
-    // Pidiendo a cada uno de los jugadores el peso y la estatura
+    // Se le pide a cada uno de los jugadores el peso y la estatura
     // Llamando a las funciones respectivas
     for (int i = 0; i < cantidadJugadores; i++) {
         pedirEstatura(jugadores[i], i);
@@ -130,30 +130,30 @@ int main() {
     // Tiempo de ejecucion = tiempoFinal - tiempoInicial
     tiempoInicial = clock();
     
-    // Calculando el promedio de la estatura
+    // Se calcula el promedio de la estatura
     float sumaTotalEstatura = 0.0;
     for (int i = 0; i < cantidadJugadores; i++)
         calcularPromedio(jugadores[i], sumaTotalEstatura, 1);
 
-    // Guardando el promedio de la estatura calculando en la structura de control
+    // Se guarda el promedio de la estatura calculado en la estructura de control
     variablesControl.promedioEstatura = sumaTotalEstatura / cantidadJugadores;
 
-    // Calculando el promedio del peso 
+    // Se calcula el promedio del peso 
     float sumaTotalPeso = 0.0;
     for (int i = 0; i < cantidadJugadores; i++)
         calcularPromedio(jugadores[i], sumaTotalPeso, 0);
 
-    // Guardando el promedio de el peso calculado en la structura de control
+    // Se guarda el promedio de el peso calculado en la estructura de control
     variablesControl.promedioPeso = sumaTotalPeso / cantidadJugadores;
 
-    // Haciendo la sumatoria para calcular la covarianza
+    // Se ejecuta la sumatoria para calcular la covarianza
     for (int i = 0; i < cantidadJugadores; i++) 
         variablesControl.sumatoriaCovarianza += (jugadores[i].estatura - variablesControl.promedioEstatura) * (jugadores[i].peso - variablesControl.promedioPeso);
 
-    // Guardando el valor de la covarianza despues de calcularla :>
+    // Se guarda el valor de la covarianza despues de calcularla :>
     variablesControl.covarianza = variablesControl.sumatoriaCovarianza / cantidadJugadores;
 
-    // Calculando la desviacion de cada una de las variables :>
+    // Se calcula la desviacion de cada una de las variables :>
     for (int i = 0; i < cantidadJugadores; i++) {
         calcularDesviacion(jugadores[i], 1);
         calcularDesviacion(jugadores[i], 0);
