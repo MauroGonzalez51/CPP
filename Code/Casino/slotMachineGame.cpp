@@ -184,7 +184,7 @@ void slotMachineGame(string& playerName, int& coins) {
 
                 } else {
                     slotMachine slot1, slot2, slot3;
-                    int cantidadVeces = (timesPlayed / (timesPlayed * 100)) + 1;
+                    int cantidadVeces = (timesPlayed / (timesPlayed * 10000)) + 1;
 
                     srand(time(NULL));
 

@@ -11,8 +11,6 @@
 
 #include <bits/stdc++.h>
 
-using namespace std;
-
 // Se crea un template de Jugadores, para incializarlos con sus propiedades
 class Jugadores {
     public:
@@ -43,21 +41,21 @@ struct {
 
 // Funcion para pedir la estatura de cada uno de los jugadores
 void pedirEstatura(Jugadores& jugador, int posicion) {
-    cout << endl;
-    cout << "[" << posicion + 1 << "] Estatura [M]" << endl;
+    std::cout << std::endl;
+    std::cout << "[" << posicion + 1 << "] Estatura [M]" << std::endl;
     do {
-        cout << "-> ";
-        cin >> jugador.estatura;
+        std::cout << "-> ";
+        std::cin >> jugador.estatura;
     } while (jugador.validarEstatura());
 }
 
 // Funcion para pedir el peso de cada uno de los jugadores
 void pedirPeso(Jugadores& jugador, int posicion) {
-    cout << endl;
-    cout << "[" << posicion + 1 << "] Peso [Kg]" << endl;
+    std::cout << std::endl;
+    std::cout << "[" << posicion + 1 << "] Peso [Kg]" << std::endl;
     do {
-        cout << "-> ";
-        cin >> jugador.peso;
+        std::cout << "-> ";
+        std::cin >> jugador.peso;
     } while (jugador.validarPeso());
 }
 
@@ -74,7 +72,7 @@ void calcularPromedio(Jugadores& jugador, float& sumaTotal, int proceso) {
             break;
         }
         default: {
-            cout << "[...]" << endl;
+            std::cout << "[...]" << std::endl;
         }
     }
 }
@@ -92,7 +90,7 @@ void calcularDesviacion(Jugadores& jugador, int proceso) {
             break;
         }
         default: {
-            cout << "[...]" << endl;
+            std::cout << "[...]" << std::endl;
         }
     }
 }
@@ -113,8 +111,8 @@ int main() {
     int cantidadJugadores;
 
     do {
-        cout << "Ingrese la cantidad de jugadores: ";
-        cin >> cantidadJugadores;
+        std::cout << "Ingrese la cantidad de jugadores: ";
+        std::cin >> cantidadJugadores;
     } while (cantidadJugadores < 1);
 
     // Se crea un array de objetos con el tamaño de la cantidad de jugadores
@@ -164,13 +162,13 @@ int main() {
     variablesControl.desviacionPeso = sqrt(variablesControl.sumatoriaCuadradosPeso / cantidadJugadores);
 
     // Se imprime el coeficiente de correlacion, haciendo uso de la funcion :>
-    cout << endl << "Coeficiente de Correlacion: " << coeficienteCorrelacion() << endl;
+    std::cout << std::endl << "Coeficiente de Correlacion: " << coeficienteCorrelacion() << std::endl;
 
     // Estructura final para verificar el tiempo de ejecucion en los calculos
     tiempoFinal = clock();
     double time = (double(tiempoFinal - tiempoInicial) / CLOCKS_PER_SEC);
 
-    cout << "Tiempo de Ejecucion [Calculos]: " << time << " (s)" << endl;
+    std::cout << "Tiempo de Ejecucion [Calculos]: " << time << " (s)" << std::endl;
 
     return EXIT_SUCCESS;
 }
