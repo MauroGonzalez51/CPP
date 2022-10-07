@@ -17,20 +17,10 @@ class Fracciones {
         }
 
         void simplificarNumeros() {
-            bool seguirDividiendo = true;
-
-            do {
-                int size = this -> divisoresComunes.size();
-                this -> numerador /= divisoresComunes[size - 1];
-                this -> denominador /= divisoresComunes[size - 1];
-
-                try {
-                    ((this -> numerador % divisoresComunes[size - 2] == 0) && (this -> denominador % divisoresComunes[size - 2]) == 0) ? 
-                        seguirDividiendo = true : seguirDividiendo = false;
-                } catch (...) {
-                    break;
-                }
-            } while (seguirDividiendo);
+            while (this -> divisoresComunes.size() > 0) {
+                this -> numerador /= divisoresComunes.back();
+                this -> denominador /= divisoresComunes.back();
+            }
         }
 };
 
