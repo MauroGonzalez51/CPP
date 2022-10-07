@@ -15,5 +15,5 @@ class personas {
 };
 
 int main(void) {
-    personas people = new personas("Mauro", 17);
+    personas* people = new personas("Mauro", 17);
 }
