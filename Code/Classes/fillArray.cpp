@@ -15,13 +15,13 @@ class Student {
 };
 
 int main(void) {
-    Student Mauro;
-    Mauro.setValues();
+    Student obj;
+    obj.setValues();
 
     cout << endl;
     cout << "NOTES" << endl;
     for (int i = 0; i < 4; i++) {
-        cout << Mauro.notes[i] << endl;
+        cout << obj.notes[i] << endl;
     }
 
 }
