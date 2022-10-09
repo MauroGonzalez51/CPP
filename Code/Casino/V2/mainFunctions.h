@@ -1,7 +1,4 @@
-#include <iostream>
-#include <array>
-#include <set>
-#include <string.h>
+#include <bits/stdc++.h>
 
 std::set <int> validGameModes;
 
