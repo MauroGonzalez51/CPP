@@ -75,3 +75,23 @@ class GuessNumber {
         }
 };
 
+class SlotMachine {
+    private:
+        int slot1, slot2, slot3;
+        bool cheatingEnabled;
+    
+    public:
+        void randomizeSlot() {
+            srand(time(NULL));
+            this -> slot1 = 1 + rand() % (11 - 1);
+            this -> slot2 = 1 + rand() % (11 - 1);
+            this -> slot3 = 1 + rand() % (11 - 1);
+        }
+
+        void display() {
+            std::cout << this -> slot1 << std::endl;
+            std::cout << this -> slot2 << std::endl;
+            std::cout << this -> slot3 << std::endl;
+        }
+};
+

@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 #include "classPlayer.h"
 #include "mainFunctions.h"
+#include "casinoGame.h"
 
 int main() {
     Player* player = new Player(displayGameModes());
     
-    GuessNumber* guessNumber = new GuessNumber();
-
-    guessNumber -> selectGameMode();
-
+    gameLauncher(player);
 
     return EXIT_SUCCESS;
 }

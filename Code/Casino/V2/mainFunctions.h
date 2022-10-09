@@ -53,5 +53,25 @@ int displayGameModes() {
     std::cout << "[1]. Guess a Number" << std::endl;
     validGameModes.insert(1);
 
+    std::cout << "[2]. Slot Machine Game" << std::endl;
+    validGameModes.insert(2);
+
     return selectGameMode();
+}
+
+void gameLauncher(Player* player) {
+    switch (player -> getGameMode()) {
+        case 1: {
+            GuessNumber* guessNumber = new GuessNumber();
+            // guessNumber -> selectGameMode();
+            break;
+        }
+        
+        case 2: {
+            SlotMachine* slotMachine = new SlotMachine();
+            // slotMachine -> randomizeSlot();
+            // slotMachine -> display();
+            break;
+        }
+    }
 }
