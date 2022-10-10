@@ -63,6 +63,8 @@ void gameLauncher(Player* player) {
     switch (player -> getGameMode()) {
         case 1: {
             GuessNumber* guessNumber = new GuessNumber();
+            
+            guessNumber -> guessNumberGame(player);
             // guessNumber -> selectGameMode();
             break;
         }
