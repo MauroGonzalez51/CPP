@@ -3,7 +3,7 @@
 bool validateMsg(char msg[3]);
 class Player {
     private:
-        float balance;
+        double balance;
         int coins, gameModeGeneral;
         std::string name;
 
@@ -45,7 +45,7 @@ class Player {
 
 class GuessNumber {
     private:
-        int gameModeLocal, randomNumber, tries = 5, multiplier;
+        int gameModeLocal, randomNumber, tries = 5, multiplier, lowerLimit, upperLimit;
         bool triesGameMode = false;
         float bettingAmount;
         std::array <std::string, 5> validEntries = {"Number 1-10  | 1 Try", "Number 1-10  | 5 Tries", "Number 1-100 | 1 Try", "Number 1-100 | 5 Tries", "Custom Game Mode"};
@@ -71,9 +71,24 @@ class GuessNumber {
             std::cout << "That's it!" << std::endl;
         }
 
-        void randomizeNumber (int lowerLimit, int upperLimit) {
+        void randomizeNumber () {
             srand(time(NULL));
-            this -> randomNumber = lowerLimit + rand() % ((upperLimit + 1) - 1);
+            switch (gameModeLocal) {
+                case 2: 
+                    this -> randomNumber = 1 + rand() % (101 - 1);
+                    break;
+                
+                case 3:
+                    this -> randomNumber = 1 + rand() % (101 - 1);
+                    break;
+
+                case 5:
+                    this -> randomNumber = this -> lowerLimit + rand() % ((this -> upperLimit + 1) - 1);
+                    break;
+                
+                default:
+                    this -> randomNumber = 1 + rand() % (11 - 1);
+            }
         }
 
     public:
@@ -114,7 +129,7 @@ class GuessNumber {
             this -> selectGameMode();
   
             std::cout << std::endl;
-            std::cout << "[ DISCLAIMER ]: You win 10x regardless of the Game Mode" << std::endl;
+            std::cout << "[DISCLAIMER]: You win 10x regardless of the Game Mode" << std::endl;
 
             if (this -> gameModeLocal != 5) {
                 multiplier = 10;
@@ -128,14 +143,35 @@ class GuessNumber {
                     std::cout << "Number of tries: ";
                     std::cin >> customTries;
                 } while (customTries < 1);
+
+                do {
+                    std::cout << "Lower Limit: ";
+                    std::cin >> this -> lowerLimit;
+                } while (lowerLimit < 0);
+
+                do {
+                    std::cout << "Upper Limit: ";
+                    std::cin >> this -> upperLimit;
+                } while ((lowerLimit > upperLimit) || (upperLimit < 0));
             } 
+
+            std::cout << "[INFO]  Tries Gamemode: " << std::boolalpha << this -> triesGameMode << std::endl;
+
+            (this -> lowerLimit != 0) ? 
+                std::cout << "[INFO]  Lower Limit: " << this -> lowerLimit << std::endl :
+                    std::cout << "[INFO]  Lower Limit: NULL" << std::endl;
+
+            (this -> upperLimit != 0) ? 
+                std::cout << "[INFO]  Upper Limit: " << this -> upperLimit << std::endl :
+                    std::cout << "[INFO]  Upper Limit: NULL" << std::endl;
+            
+            std::cout << "[INFO]  Multiplier Value: " << this -> multiplier << std::endl;
 
             do {
 
                 reFillTries(customTries);
-                randomizeNumber(1, 10);
-                
-                std::cout << std::boolalpha << this -> triesGameMode << std::endl;
+                randomizeNumber();
+                // std::cout << "[INFO]  Random: " << this -> randomNumber << std::endl;
 
                 bool playerWon = false;
 
@@ -145,7 +181,7 @@ class GuessNumber {
                 do {
                     std::cout << "Hey, " << player -> getName() << ", Enter amount to bet: ";
                     std::cin >> this -> bettingAmount;
-                } while (bettingAmount < 1);
+                } while ((bettingAmount < 1) || (bettingAmount > player -> getBalance()));
 
                 player -> balanceSub(bettingAmount);
 
@@ -193,9 +229,8 @@ class GuessNumber {
                         break;
                 } else {
                     std::cout << "You ran out of money" << std::endl;
-                    exit(EXIT_SUCCESS);
+                    break;
                 }
-
             } while (true);
         }
 };
