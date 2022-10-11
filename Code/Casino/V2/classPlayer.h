@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <conio.h>
 
 bool validateMsg(char msg[3]);
 class Player {
@@ -9,11 +10,11 @@ class Player {
 
     public:
         Player(const int gameMode) {
-            std::cout << "Enter your name: ";
-            std::cin >> this -> name;
 
             switch (gameMode) {
                 case 1: {
+                    std::cout << "Enter your name: ";
+                    std::cin >> this -> name;
                     std::cout << "Hey, " << this -> name << ", Enter your initial balance to play: ";
                     std::cin >> this -> balance;
                     this -> gameModeGeneral = 1;
@@ -21,6 +22,8 @@ class Player {
                 }
 
                 case 2: {
+                    std::cout << "Enter your name: ";
+                    std::cin >> this -> name;
                     std::cout << "Hey, " << this -> name << ", Enter your initial coins to play: ";
                     std::cin >> this -> coins;
                     this -> gameModeGeneral = 2;
@@ -40,7 +43,12 @@ class Player {
         void balanceAdd(int quantity) { this -> balance += quantity; }
 
         void balanceSub(int quantity) { this -> balance -= quantity; }
-    
+
+        int getCoins() { return this -> coins; }
+
+        void coinsAdd(int quantity) { this -> coins += quantity; }
+
+        void coinsSub(int quantity) { this -> coins -= quantity; }
 };
 
 class GuessNumber {
@@ -48,7 +56,7 @@ class GuessNumber {
         int gameModeLocal, randomNumber, tries = 5, multiplier, lowerLimit, upperLimit;
         bool triesGameMode = false;
         float bettingAmount;
-        std::array <std::string, 5> validEntries = {"Number 1-10  | 1 Try", "Number 1-10  | 5 Tries", "Number 1-100 | 1 Try", "Number 1-100 | 5 Tries", "Custom Game Mode"};
+        std::array <std::string, 6> validEntries = {"Number 1-10  | 1 Try", "Number 1-10  | 5 Tries", "Number 1-100 | 1 Try", "Number 1-100 | 5 Tries", "Custom Game Mode", "Exit"};
 
         bool validateGameMode() {
             bool isValid = false;
@@ -104,9 +112,8 @@ class GuessNumber {
 
         void displayGameModes() {
             std::cout << std::endl;
-            for (int i = 0; i < this -> validEntries.size(); ++i) {
+            for (int i = 0; i < this -> validEntries.size(); ++i) 
                 std::cout << "[ " << i + 1 << " ] " << this -> validEntries.at(i) << std::endl;
-            }
             std::cout << std::endl;
         }
 
@@ -127,7 +134,10 @@ class GuessNumber {
             std::cout << std::endl;
             this -> gameRules();
             this -> selectGameMode();
-  
+
+            if (this -> gameModeLocal == 6)
+                exit(EXIT_SUCCESS);
+            
             std::cout << std::endl;
             std::cout << "[DISCLAIMER]: You win 10x regardless of the Game Mode" << std::endl;
 
@@ -241,10 +251,159 @@ class SlotMachine {
         bool cheatingEnabled;
     
     public:
-        void randomizeSlot() {
+        void randomizeSlot(int times) {
             srand(time(NULL));
-            this -> slot1 = 1 + rand() % (11 - 1);
-            this -> slot2 = 1 + rand() % (11 - 1);
-            this -> slot3 = 1 + rand() % (11 - 1);
+            
+            for (int i = 0; i < times; i++) {
+                this -> slot1 = 1 + rand() % (11 - 1);
+                this -> slot2 = 1 + rand() % (11 - 1);
+                this -> slot3 = 1 + rand() % (11 - 1);
+            }
+        }
+
+        void displaySlots() {
+            std::cout << "| " << this -> slot1 << " | " << this -> slot2 << " | " << this -> slot3 << " | "<< std::endl;
+        }
+
+        void searchCoincidences(Player* player) {
+            // cout << num1 << " " << num2 << " " << num3 << endl;
+
+            std::array <int, 3> numbers = { this -> slot1, this -> slot2, this -> slot3 };
+            std::array <int, 3> repeatNumbers;
+            repeatNumbers.fill(0);
+
+            bool checkNextCase = true, userWin = false;
+            // There are all different?
+            {
+                std::cout << std::endl;
+                for (int i = 0; i < numbers.size(); i++) {
+                    int times = 0;
+                    for (int j = 0; j < numbers.size(); j++) {
+                        if (numbers[i] == numbers[j])
+                            times++;    
+                    }
+                    std::cout << "Number: " << numbers[i] << " -> repeat: " << times << std::endl;
+
+                    if (times >= 2) 
+                        repeatNumbers[i] = numbers[i];
+                }
+                // What all this code do is check for repeated numbers, and then pushing 
+                // into a new array ...
+
+                int counter = 0;
+                for (auto i : repeatNumbers) {
+                    if (i == 0)
+                        counter++;
+                }
+
+                if (counter == 3) {
+                    std::cout << std::endl << "There are all different :>" << std::endl;
+                    std::cout << "You lost [1] coin" << std::endl;
+                    checkNextCase = false;
+                }
+
+            };
+
+            // Checking the "repeated numbers" ...
+
+            // 1 Case: Pair of numbers
+            if (checkNextCase) {   
+                int pairNumber;
+                for (auto i : repeatNumbers) {
+                    if (i != 0) {
+                        pairNumber = i;
+                        break;
+                    }
+                }
+
+                // cout << "Pair: " << pairNumber << endl;
+                std::cout << "You have won!" << std::endl;
+                std::cout << pairNumber << " coin(s) ..." << std::endl;
+                player -> coinsAdd(pairNumber);
+                
+                checkNextCase = false;
+                userWin = true;
+            }
+
+            // 2 Case: All the same
+            if (checkNextCase) {
+                int threeNumber, times = 0, sample = repeatNumbers[0];
+                for (auto i : repeatNumbers) {
+                    if (i == sample)
+                        times++;
+                }
+
+                if (times == 3) {
+                    // cout << "Three: " << threeNumber << endl;
+                    
+                    std::cout << "You have won!" << std::endl;
+                    std::cout << threeNumber * 2 << " coin(s) ..." << std::endl;
+                    player -> coinsAdd(threeNumber * 2);    
+
+                    checkNextCase = false;   
+                    userWin = true; 
+                }
+            }
+
+            if (checkNextCase) {
+                int sevenNumber = 0;
+                for (auto i : repeatNumbers) {
+                    if (i == 7)
+                        sevenNumber++;
+                }
+
+                if (sevenNumber == 3) {
+                    std::cout << "You have won!" << std::endl;
+                    std::cout << "777 coins" << std::endl;
+                    player -> coinsAdd(777);
+                    checkNextCase = false;
+                    userWin = true;
+                }
+            }
+
+            if (!userWin) 
+                std::cout << std::endl <<  "[...]" << std::endl;
+        }
+
+        void slotMachineGame(Player* player) {
+            int timesPlayed = 0;
+
+            do {
+                int times;
+                system("cls");
+                std::cout << "Current coins: " << player -> getCoins() << std::endl;
+
+                char msgIn[3];
+                std::cout << "Wanna play?" << std::endl;
+                std::cout << "-> ";
+                std::cin >> msgIn;
+
+                std::cout << "[INFO]  Launch Game: " << std::boolalpha << validateMsg(msgIn) << std::endl;
+
+                if (!validateMsg(msgIn))
+                    break;
+                else if (player -> getCoins() < 1) {
+                    std::cout << "You don't have enough coins to play!" << std::endl;
+                    break;
+                } else {
+                    timesPlayed++;
+                    player -> coinsSub(1);
+                    if (timesPlayed > 5)
+                        this -> cheatingEnabled = true;
+
+                    (cheatingEnabled) ? times = ((timesPlayed * 10) / player -> getCoins()) : times = 44;
+
+                    std::cout << "Press a key to insert a coin" << std::endl;
+                    getch();
+
+                    randomizeSlot(times);
+
+                    displaySlots();
+
+                    searchCoincidences(player);
+
+                    system("pause");
+                }
+            } while (true);
         }
 };

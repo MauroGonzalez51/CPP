@@ -56,6 +56,9 @@ int displayGameModes() {
     std::cout << "[2]. Slot Machine Game" << std::endl;
     validGameModes.insert(2);
 
+    std::cout << "[3]. Exit" << std::endl;
+    validGameModes.insert(3);
+
     return selectGameMode();
 }
 
@@ -71,9 +74,15 @@ void gameLauncher(Player* player) {
         
         case 2: {
             SlotMachine* slotMachine = new SlotMachine();
+
+            slotMachine -> slotMachineGame(player);
             // slotMachine -> randomizeSlot();
             // slotMachine -> display();
             break;
+        }
+
+        case 3: {
+            exit(EXIT_SUCCESS);
         }
     }
 }
