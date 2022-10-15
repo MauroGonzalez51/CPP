@@ -78,6 +78,7 @@ int mainMenu() {
     std::cout << std::endl;
     std::cout << "1. Register" << std::endl;
     std::cout << "2. Login" << std::endl;
+    std::cout << "3. Exit" << std::endl;
     std::cout << std::endl;
     std::cout << "-> ";
     std::cin >> choice;
