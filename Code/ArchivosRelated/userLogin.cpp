@@ -1,139 +1,141 @@
+/**
+ *  //* groupMembers
+ *      - Mauro Alonso Gonzalez Figueroa    T00067222
+ *      - Juan Jose Jimenez Guardo          T00068278
+ * 
+ * 
+ *   //* DISCLAIMER
+ *      Since the program uses the std::cin function to 
+ *      store the input data, there's no way it could
+ *      handle the blank spaces.
+ *      
+ *      So, most likely the program will crash if some of these
+ *      characters are inserted.
+ * 
+ *      It'll create a new .txt file with just the name inserted 
+ *      (a line for each word), and the password inserte will be
+ *      completely omitted.
+ * 
+ * 
+*/
+
 #include <bits/stdc++.h>
-
-std::ofstream logFile("logFile.txt", std::ios::app);
-
-void setupLogger(const std::string msgToLog) {
-    time_t now = time(0);
-    char* dateTime = ctime(&now);
-
-    if (msgToLog.empty()) {
-        logFile << std::endl;
-        logFile << "Sesion Started at " << dateTime << std::endl;
-    } else 
-        logFile << "[INFO] " << msgToLog << std::endl;
-            
-    if (msgToLog == "closeSession")
-        logFile.close();
-}
 
 class User {
     private:
         std::string username, password;
 
-        bool validateUsername() {
-            bool isValid = false;
-
-            if (!this -> username.empty()) 
-                isValid = true;
-            
-            return isValid;
-        }
-
-        bool validatePassword() {
-            bool isValid = false;
-
-            if (!this -> password.empty()) 
-                isValid = true;
-
-            return isValid;
-        }
-
     public:
-        int selectedOption;
-        bool logOut = false;
+        User(void) {
+            std::cout << "Enter a username: ";
+            std::cin >> this -> username;
 
-        void setupValues() {
-            
-            std::cout << "Enter Username";
-            do {
-                std::cout << "-> ";
-                getline(std::cin, this -> username);
-
-            } while (!this -> validateUsername());
-
-            std::cout << "Enter Password: ";
-            do {
-                std::cout << "-> ";
-                getline(std::cin, this -> password);
-
-            } while (!this -> validatePassword());
+            std::cout << "Enter a password: ";
+            std::cin >> this -> password;
         }
 
         std::string getUsername() { return this -> username; }
         std::string getPassword() { return this -> password; }
 };
 
-void mainMenu(User* user) {
-    std::cout << std::endl;
-    std::cout << "User Login App" << std::endl;
-    std::cout << "[1]. Login" << std::endl;
-    std::cout << "[2]. Sign up" << std::endl;
-    std::cout << "[3]. Exit" << std::endl;
-    std::cout << "-> ";
-    std::cin >> user -> selectedOption;
+bool isLoggedIn() {
+    std::string lineUser, linePassword;
+    std::string username, password;
+
+    std::cout << "Enter a username: ";
+    std::cin >> username;
+
+    std::cout << "Enter a password: ";
+    std::cin >> password;
+
+    std::ifstream read(username + ".txt");
+    std::getline(read, lineUser);
+    std::getline(read, linePassword);
+
+    return ((username == lineUser) && (password == linePassword) ? true : false);
 }
 
-void userApp(User* user) {
+int mainMenu() {
+    int choice;
 
+    std::cout << std::endl << std::endl << std::endl;
+    std::cout << "Main Menu" << std::endl;
+    for (int i = 0; i < 40; i++)
+        std::cout << "-";
 
-    switch (user -> selectedOption) {
-        case 1: {
-            try {
-                std::ifstream userLog(user -> getUsername() + ".txt");
+    std::cout << std::endl;
+    std::cout << "1. Register" << std::endl;
+    std::cout << "2. Login" << std::endl;
+    std::cout << std::endl;
+    std::cout << "-> ";
+    std::cin >> choice;
 
-                if (!userLog.is_open()) 
-                    throw (123);
-
-            } catch (int errorMsg) { 
-                std::cout << errorMsg << std::endl;
-            }
-
-            break;
-        }
-
-        case 2: {
-            std::ofstream userFile (user -> getUsername() + ".txt", std::ios::app);
-
-            userFile << user -> getUsername() << std::endl;
-            userFile << user -> getPassword() << std::endl;
-
-            break;
-        }
-
-        case 3: {
-            user -> logOut = true;
-            system("pause");
-
-            break;
-        }
-
-        default:
-            std::cout << "[...]" << std::endl;
-
-    }
+    return choice;
 }
 
 
 int main(void) {
-    setupLogger("");
+    switch (mainMenu()) {
+        case 1: {
+            std::cout << std::endl << std::endl;
+            std::cout << "Registration" << std::endl;
+            std::cout << std::endl;
 
-    User* user = new User();
+            User* user = new User();
 
-    setupLogger("Creating a new user object");
+            std::ofstream userFile (user -> getUsername() + ".txt", std::ios::app);
+            userFile << user -> getUsername() << std::endl;
+            userFile << user -> getPassword() << std::endl;
 
+            userFile.close();
 
-    do {
-        mainMenu(user);
+            std::cout << "Welcome " << user -> getUsername() << "!" << std::endl;
+            break;
+        }
 
-        setupLogger("Option Selected");
+        case 2: {
+            if (!isLoggedIn()) {
+                system("cls");
+                std::cout << std::endl;
+                std::cout << "Invalid Login!" << std::endl;
+                main();
+            } else {
+                std::cout << std::endl;
+                std::cout << "Succesfully logged in!" << std::endl << std::endl;
 
-        user -> setupValues();
+                std::cout << "Welcome back" << std::endl << std::endl;
 
-        setupLogger("Asking for the username/password");
+                std::cout << "DASHBOARD" << std::endl;
+                std::cout << "// Some info ...." << std::endl << std::endl;
 
-        userApp(user);
+                int choice;
 
-    } while (!user -> logOut);
+                std::cout << "1. Sign out" << std::endl;
+                std::cout << "2. Back to main menu" << std::endl << std::endl;
+                std::cout << "-> ";
+                std::cin >> choice;
+
+                switch (choice) {
+                    case 1: 
+                        system("pause");
+                        exit(EXIT_SUCCESS);
+                        break;
+                    
+                    case 2: 
+                        main();
+                        break;
+                    
+                    default:
+                        system("pause");
+                        main();
+                }
+            }
+            break;
+        }
+
+        default: 
+            exit(EXIT_FAILURE);
+    }
 
     return EXIT_SUCCESS;
 }
