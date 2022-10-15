@@ -21,6 +21,18 @@
 
 #include <bits/stdc++.h>
 
+const std::string nombreArchivo = "Code/ArchivosRelated/fullData.csv";
+
+struct {
+    std::vector <std::string> userName;
+    std::vector <std::string> phoneNumber;
+    std::vector <std::string> emailAddress;
+    std::vector <std::string> country;
+} dataArrays;
+
+void readingFile();
+void showFullData();
+
 class User {
     private:
         std::string username, password;
@@ -106,7 +118,14 @@ int main(void) {
                 std::cout << "Welcome back" << std::endl << std::endl;
 
                 std::cout << "DASHBOARD" << std::endl;
-                std::cout << "// Some info ...." << std::endl << std::endl;
+                
+                std::cout << "// Example ..." << std::endl;
+
+                readingFile();
+
+                system("pause");
+
+                showFullData();
 
                 int choice;
 
@@ -138,4 +157,64 @@ int main(void) {
     }
 
     return EXIT_SUCCESS;
+}
+
+void readingFile() {
+    unsigned startTime, endTime;
+    std::ifstream archivoData(nombreArchivo);
+    std::string line;
+    char delimiter = ',';
+
+    std::getline(archivoData, line);
+
+    startTime = clock();
+    while (std::getline(archivoData, line)) {
+        std::stringstream streamLine(line);
+
+        std::array <std::string, 4> tempValues;
+        std::getline(streamLine, tempValues[0], delimiter);
+        std::getline(streamLine, tempValues[1], delimiter);
+        std::getline(streamLine, tempValues[2], delimiter);
+        std::getline(streamLine, tempValues[3], delimiter);
+        
+        dataArrays.userName.push_back(tempValues[0]);
+        dataArrays.phoneNumber.push_back(tempValues[1]);
+        dataArrays.emailAddress.push_back(tempValues[2]);
+        dataArrays.country.push_back(tempValues[3]);
+
+        tempValues.fill(" ");
+    }
+    archivoData.close();
+    endTime = clock();
+
+    double readingTime = (double(endTime - startTime) / CLOCKS_PER_SEC);
+    std::cout << "Reading data: " << readingTime << " (s)" << std::endl;
+}
+
+void showFullData() {
+    unsigned startTime, endTime;
+
+    std::cout << std::endl;
+    std::cout << "Number of records: " << dataArrays.userName.size() << std::endl;
+    system("pause");
+
+    for (int i = 0; i < 40; i++)
+        std::cout << "-";
+    std::cout << std::endl;
+
+    startTime = clock();
+    for (int i = 0; i < dataArrays.userName.size(); i++) {
+        std::cout << "Username: " << dataArrays.userName.at(i) << std::endl;
+        std::cout << "Phone Number: " << dataArrays.phoneNumber.at(i) << std::endl;
+        std::cout << "Email Address:" << dataArrays.emailAddress.at(i) << std::endl;
+        std::cout << "Country: " << dataArrays.emailAddress.at(i) << std::endl;
+
+        for (int i = 0; i < 40; i++)
+            std::cout << "-";
+        std::cout << std::endl;
+    }
+
+    endTime = clock();
+    long double executionTime = (double(endTime - startTime) / CLOCKS_PER_SEC);
+    std::cout << "Execution Time: " << executionTime << " (s)" << std::endl;
 }
