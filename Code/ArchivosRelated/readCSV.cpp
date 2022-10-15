@@ -12,12 +12,16 @@ struct {
 void showFullData();
 
 int main() {
+    unsigned startTime, endTime;
+
     std::ifstream archivoData(nombreArchivo);
     std::string line;
     char delimiter = ',';
 
     // Descartando la primera linea del archivo
     getline(archivoData, line);
+
+    startTime = clock();
 
     while (getline(archivoData, line)) {
 
@@ -39,6 +43,12 @@ int main() {
 
         tempValues.fill(" ");
     }
+
+    endTime = clock();
+    long double time = (double(endTime - startTime) / CLOCKS_PER_SEC);
+    std::cout << "Reading data: " << time << " (s)" << std::endl;
+
+    system("pause");
 
     archivoData.close();
 
