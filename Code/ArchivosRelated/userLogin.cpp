@@ -1,6 +1,6 @@
 /**
  *  //* groupMembers
- *      - Mauro Alonso Gonzalez Figueroa    T00067222
+ *      - Mauro Alonso Gonzalez Figueroa    T00067622
  *      - Juan Jose Jimenez Guardo          T00068278
  * 
  * 
