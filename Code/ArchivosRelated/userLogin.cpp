@@ -13,7 +13,7 @@
  *      characters are inserted.
  * 
  *      It'll create a new .txt file with just the name inserted 
- *      (a line for each word), and the password inserte will be
+ *      (a line for each word), and the password inserted will be
  *      completely omitted.
  * 
  * 
@@ -21,7 +21,7 @@
 
 #include <bits/stdc++.h>
 
-const std::string nombreArchivo = "Code/ArchivosRelated/fullData.csv";
+const std::string nombreArchivo = "Code/ArchivosRelated/.CSV/fullData.csv";
 
 struct {
     std::vector <std::string> userName;

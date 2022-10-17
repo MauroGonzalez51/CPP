@@ -1,0 +1,15 @@
+# Lines starting witn "#" will be ignored.
+# Format -> bookName, price, status
+Book1.name,price1,1
+Book2.name,price2,1
+Book3.name,price3,1
+Book4.name,price4,1
+Book5.name,price5,1
+Book6.name,price6,1
+Book7.name,price7,1
+Book8.name,price8,1
+Book9.name,price9,1
+Nombre,Precio,1
+
+NombreUwU,PrecioUwU,1
+NombreUwU,PrecioMasUwU,1
