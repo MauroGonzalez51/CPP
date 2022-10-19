@@ -31,10 +31,10 @@ int mainMenu() {
 }
 
 int main() {
-    readData();
     do {
         switch (mainMenu()) {
             case 1: {
+                readData();
                 showData();
                 break;
             }
@@ -45,6 +45,7 @@ int main() {
             }
 
             case 3: {
+                readData();
                 showData();
                 reserveBook();
                 break;
@@ -62,6 +63,10 @@ void readData() {
     std::ifstream file(filePath);
     std::string line;
     char delimiter = ',';
+
+    booksInfo.booksName.clear();
+    booksInfo.booksPrice.clear();
+    booksInfo.bookStatus.clear();
 
     while (std::getline(file, line)) {
         if ((line[0] != '#') && (!line.empty())) {
@@ -144,6 +149,8 @@ void reserveBook() {
         std::cout << "Sorry, the book has been already reserved";
     else {
         std::cout << "The book has been reserverd";
+
+        // Tengo que modificar el valor en el csv para despues leerlo :>
         booksInfo.bookStatus.at(bookIdentifier - 1) = "0";
     }
     
