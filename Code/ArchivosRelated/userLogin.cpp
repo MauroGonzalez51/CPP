@@ -23,6 +23,10 @@
 
 const std::string nombreArchivo = "Code/ArchivosRelated/.CSV/fullData.csv";
 
+void clearBuffers() {
+    std::cin.ignore(std::numeric_limits <std::size_t>::max());
+}
+
 struct {
     std::vector <std::string> userName;
     std::vector <std::string> phoneNumber;
