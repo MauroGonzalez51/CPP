@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
-int main() {
-    std::ofstream dataFile ("dataFile.txt", std::ios::app);
+int main(void) {
+    std::ofstream dataFile ("Code/ATMService/files/test.txt", std::ios::app);
 
     dataFile << "Buenos dias" << std::endl;
 
