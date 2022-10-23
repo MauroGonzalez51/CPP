@@ -1,0 +1,27 @@
+
+************************************************************
+Sesion Started at: Sun Oct 23 13:50:22 2022
+
+[INFO] New user created: SamuelDavid
+
+************************************************************
+Sesion Started at: Sun Oct 23 14:10:26 2022
+
+[INFO] Deleted account: SamuelDavid
+
+************************************************************
+Sesion Started at: Sun Oct 23 14:16:36 2022
+
+[INFO] Attempt to delete account: MauroAlonso
+
+************************************************************
+Sesion Started at: Sun Oct 23 14:19:05 2022
+
+[INFO] Attempt to delete account: MauroAlonso
+
+****************************************
+Sesion Started at: Sun Oct 23 14:20:58 2022
+
+[INFO] New user created: SamuelDavid
+[INFO] User accessed to account: SamuelDavid
+[INFO] Deleted account: SamuelDavid

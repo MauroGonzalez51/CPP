@@ -2,6 +2,20 @@
 
 void clearBuffers();
 
+bool validateMsg(char msg[3]) {
+    std::array <std::string, 20> options = {"Si", "No", "si", "no", "SI", "NO", "S", "N", "s", "n", "y", "n", "Y", "N", "YES", "NO", "yes", "no", "Yes", "No"};
+    bool Flag = false;
+    for (int i = 0; i < options.size(); i++) {
+        if (msg == options[i]) {
+            Flag = true;
+            if (i % 2 != 0){
+                Flag = false;
+            }
+        }
+    }
+    return Flag;
+}
+
 class User {
     private:
         std::string username, password;
@@ -30,6 +44,8 @@ class User {
                     std::cin >> this -> balance;
                 } while (this -> balance < 0);
             }
+
+            clearBuffers();
         }
 
         bool tryLogin() {
@@ -47,6 +63,8 @@ class User {
 
                     ((this -> username == auxUsername) && (this -> password == auxPassword)) ?
                         success = true : throw (std::string) ("Username or Password mismatch");
+
+                    clearBuffers();
                 }
                 
                 userFile.close();
@@ -81,4 +99,33 @@ class User {
 
             return success;
         }
+
+        bool deleteAccount() {
+            clearBuffers();
+
+            char msg[3];
+            bool accountDeleted = false;
+
+            std::cout << std::endl;
+            std::cout << "Wanna delete this account?" << std::endl;
+            std::cout << std::endl << "-> ";
+            std::cin >> msg[3];
+
+            if (tryLogin()) {
+                if (!validateMsg(msg)) {
+                    std::string sfilePath = "Code/ATMService/files/" + this -> username + ".txt";
+
+                    const char* cfilePath = sfilePath.c_str();
+
+                    int result = remove(cfilePath);
+                    
+                    if (result == 0)
+                        accountDeleted = true;
+
+                }
+            } 
+            return accountDeleted;
+        }
+
+        std::string getUsername() { return this -> username; }
 };
