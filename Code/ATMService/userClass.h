@@ -5,9 +5,10 @@ void clearBuffers();
 class User {
     private:
         std::string username, password;
+        double balance;
 
     public:
-        User(void) {
+        User(bool accountCreated) {
             std::cout << std::endl;
 
             std::cout << "Enter username: ";
@@ -19,6 +20,16 @@ class User {
             std::cout << "Enter password: ";
             std::cout << std::endl << "-> ";
             std::cin >> this -> password;
+
+            if (accountCreated) {
+                std::cout << std::endl;
+
+                do {
+                    std::cout << "Enter initial balance: ";
+                    std::cout << std::endl << "-> ";
+                    std::cin >> this -> balance;
+                } while (this -> balance < 0);
+            }
         }
 
         bool tryLogin() {
@@ -27,7 +38,7 @@ class User {
                 std::ifstream userFile ("Code/ATMService/files/" + this -> username + ".txt");
 
                 if (!userFile.is_open())
-                    throw ("File not found: " +  this -> username + ".txt | You must create an account first");
+                    throw (std::string) ("File not found: " +  this -> username + ".txt | You must create an account first");
                 else {
                     std::string auxUsername, auxPassword;
 
@@ -35,13 +46,12 @@ class User {
                     std::getline(userFile, auxPassword);
 
                     ((this -> username == auxUsername) && (this -> password == auxPassword)) ?
-                        success = true :
-                        throw ("Username or Password mismatch");
+                        success = true : throw (std::string) ("Username or Password mismatch");
                 }
                 
                 userFile.close();
-            } catch (const std::string msgError) {
-                std::cout << "Error: " << msgError << std::endl;
+            } catch (std::string msgError) {
+                std::cout << std::endl << "Error: " << msgError << std::endl;
             }
 
             return success;
@@ -54,11 +64,12 @@ class User {
                 std::ofstream userFile ("Code/ATMService/files/" + this -> username + ".txt", std::ios::app);
 
                 if (!userFile.is_open())
-                    throw ("File can not be opened: " + this -> username + ".txt");
+                    throw (std::string) ("File can not be opened: " + this -> username + ".txt");
                 
                 else {
                     userFile << this -> username << std::endl;
                     userFile << this -> password << std::endl;
+                    userFile << this -> balance << std::endl;
 
                     success = true;
                 }

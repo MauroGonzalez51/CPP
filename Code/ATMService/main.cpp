@@ -28,29 +28,33 @@ int mainMenu() {
 }
 
 void dashboardAccount(User* user) {
-    std::cout << "Buenos dias" << std::endl;
+    std::cout << std::endl << "Buenos dias" << std::endl;
 }
 
 void loopAtm() {
     do {
         switch (mainMenu()) {
             case 1: {
-                User* user = new User();
+                User* user = new User(true);
                 (user -> createAccount()) ?
                     std::cout << std::endl << "Succesfully signed up" << std::endl :
                         std::cout << std::endl <<"Failed to sign up" << std::endl;
                 
+                delete user;
+
                 break;
             }
 
             case 2: {
-                User* user = new User();
+                User* user = new User(false);
                 (user -> tryLogin()) ? 
                     std::cout << std::endl << "Succesfully logged" << std::endl :
                         std::cout << std::endl << "Failed to log up" << std::endl;
 
                 dashboardAccount(user);
                 
+                delete user;
+
                 break;
             }
 
