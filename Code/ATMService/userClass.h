@@ -88,6 +88,7 @@ class User {
                     userFile << this -> username << std::endl;
                     userFile << this -> password << std::endl;
                     userFile << this -> balance << std::endl;
+                    userFile << "Moves: [...]" << std::endl;
 
                     success = true;
                 }
@@ -108,7 +109,7 @@ class User {
 
             std::cout << std::endl;
             std::cout << "Wanna delete this account?" << std::endl;
-            std::cout << std::endl << "-> ";
+            std::cout << "-> ";
             std::cin >> msg[3];
 
             if (tryLogin()) {
@@ -128,4 +129,59 @@ class User {
         }
 
         std::string getUsername() { return this -> username; }
+
+        int userDashboardMainMenu() {
+            int choice;
+            std::cout << std::endl;
+            std::cout << "Dashboard Menu" << std::endl;
+            std::cout << "1. See your account status" << std::endl;
+            std::cout << "2. See previous moves" << std::endl;
+            std::cout << "3. Add Money" << std::endl;
+            std::cout << "4. Retire Money" << std::endl;
+            std::cout << "5. Exit" << std::endl;
+
+            return choice;
+        }
+
+        void userDashboard(ATM* atm);
+
 };
+
+void User::userDashboard(ATM* atm) {
+    switch (userDashboardMainMenu()) {
+        case 1: {
+            try {
+                std::ifstream accountStatus ("Code/ATMService/files/" + this -> username +  ".txt");
+
+                (!accountStatus.is_open()) ?
+                    throw (std::string) ("File Not found || Account Deleted") :
+                        std::cout << "Status: Your account is activated " << std::endl;
+            } catch (std::string msgError) {
+                std::cout << "Status: " << msgError << std::endl;
+            }
+
+            break;
+        }
+
+        case 2: {
+            std::ifstream moves ("Code/ATMService/files/" + this -> username + ".txt");
+
+            std::string line;
+            std::vector <std::string> movesDetailed;
+
+            for (int i = 0; i < 4; i++)
+                std::getline (moves, line);
+            
+            while (std::getline(moves, line)) {
+                movesDetailed.push_back(line);
+            }
+
+            std::cout << movesDetailed.size() << std::endl;
+
+            break;
+        } 
+            
+        default:
+            exit(EXIT_FAILURE);
+    }
+}

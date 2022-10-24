@@ -40,9 +40,11 @@ void loopAtm() {
                 if (user -> createAccount()) {
                     std::cout << std::endl << "Succesfully signed up" << std::endl;
                     atm -> writeLog("New user created: " + user -> getUsername());
+                    system("pause");
                 } else {
                     std::cout << std::endl <<"Failed to sign up" << std::endl;
                     atm -> writeLog("Failed to create a new instance of user");
+                    system("pause");
                 }
                 
                 delete user;
@@ -55,11 +57,13 @@ void loopAtm() {
                 if (user -> tryLogin()) {
                     std::cout << std::endl << "Succesfully logged" << std::endl;
                     atm -> writeLog("User accessed to account: " + user -> getUsername());
-
-                    // Dashboard ...
+                    system("pause");
+                    
+                    user -> userDashboard(atm);
                 } else {
                     std::cout << std::endl << "Failed to log up" << std::endl;
                     atm -> writeLog("User " + user -> getUsername() + " failed to accessed to account");
+                    system("pause");
                 }
 
                 delete user;
@@ -73,20 +77,22 @@ void loopAtm() {
                 if (user -> deleteAccount()) {
                     std::cout << std::endl << "Succesfully deleted account" << std::endl;
                     atm -> writeLog("Deleted account: " +  user -> getUsername());
+                    system("pause");
                 } else {
                     std::cout << std::endl << "[...]" << std::endl;
                     atm -> writeLog("Attempt to delete account: " +  user -> getUsername());
+                    system("pause");
                 }
 
                 delete user;
-
+                exit(EXIT_SUCCESS);
                 break;
             }
 
             default:
                 exit(EXIT_SUCCESS);
         }
-
+        clearBuffers();
     } while (true);
 }
 

@@ -25,3 +25,36 @@ Sesion Started at: Sun Oct 23 14:20:58 2022
 [INFO] New user created: SamuelDavid
 [INFO] User accessed to account: SamuelDavid
 [INFO] Deleted account: SamuelDavid
+
+************************************************************
+Sesion Started at: Sun Oct 23 18:52:18 2022
+
+[INFO] Deleted account: MauroAlonso
+
+************************************************************
+Sesion Started at: Sun Oct 23 18:53:49 2022
+
+[INFO] New user created: MauroAlonso
+[INFO] User accessed to account: MauroAlonso
+
+************************************************************
+Sesion Started at: Sun Oct 23 18:55:16 2022
+
+[INFO] New user created: SamuelDavid
+[INFO] User accessed to account: SamuelDavid
+[INFO] Deleted account: SamuelDavid
+
+************************************************************
+Sesion Started at: Mon Oct 24 16:12:14 2022
+
+[INFO] User accessed to account: MauroAlonso
+[INFO] User accessed to account: MauroAlonso
+
+************************************************************
+Sesion Started at: Mon Oct 24 16:13:49 2022
+
+[INFO] User accessed to account: MauroAlonso
+
+************************************************************
+Sesion Started at: Mon Oct 24 16:14:21 2022
+
