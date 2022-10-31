@@ -3,7 +3,7 @@
 
 
 int main(void) {
-    USER* user = new USER();
+    USER* user = new USER(true);
 
 
     return EXIT_SUCCESS;

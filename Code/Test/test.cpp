@@ -1,25 +1,14 @@
 #include <bits/stdc++.h>
 
+const char* getCurrentTime() {
+    time_t now = time(0);
+    const char* dateTime = ctime(&now);
+
+    return dateTime;
+}
+
 int main() {
-
-    std::ifstream archivoDatos ("datos.txt");
-
-    std::string linea;
-    char delimitador[] = ',';
-    std::vector <std::string> datos;
-
-    while (getline(archivoDatos, linea)) {
-        std::stringstream ss(linea);
-
-        std::string aux;
-
-        getline(ss, aux, delimitador);
-
-        datos.push_back(aux); 
-    }
-
-    archivoDatos.close();
-
+    std::cout << getCurrentTime() << std::endl;
 
     return EXIT_SUCCESS;
 }
