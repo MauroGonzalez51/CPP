@@ -51,7 +51,7 @@ class User {
         bool tryLogin() {
             bool success = false;
             try {
-                std::ifstream userFile ("Code/ATMService/files/" + this -> username + ".txt");
+                std::ifstream userFile ("Code/ATMService/V1/files/" + this -> username + ".txt");
 
                 if (!userFile.is_open())
                     throw (std::string) ("File not found: " +  this -> username + ".txt | You must create an account first");
@@ -114,7 +114,7 @@ class User {
 
             if (tryLogin()) {
                 if (!validateMsg(msg)) {
-                    std::string sfilePath = "Code/ATMService/files/" + this -> username + ".txt";
+                    std::string sfilePath = "Code/ATMService/V1/files/" + this -> username + ".txt";
 
                     const char* cfilePath = sfilePath.c_str();
 
@@ -151,7 +151,7 @@ void User::userDashboard(ATM* atm) {
     switch (userDashboardMainMenu()) {
         case 1: {
             try {
-                std::ifstream accountStatus ("Code/ATMService/files/" + this -> username +  ".txt");
+                std::ifstream accountStatus ("Code/ATMService/V1/files/" + this -> username +  ".txt");
 
                 (!accountStatus.is_open()) ?
                     throw (std::string) ("File Not found || Account Deleted") :

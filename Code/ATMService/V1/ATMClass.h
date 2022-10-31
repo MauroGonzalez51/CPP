@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-std::ofstream logFile ("Code/ATMService/files/logFile.txt", std::ios::app);
+std::ofstream logFile ("Code/ATMService/V1/files/logFile.txt", std::ios::app);
 void clearBuffers();
 
 class ATM {
