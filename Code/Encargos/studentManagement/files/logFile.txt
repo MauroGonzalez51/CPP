@@ -1,0 +1,142 @@
+
+--------------------------------------------------------------------------------
+Programa iniciado: Sat Nov 05 00:40:45 2022
+
+[INFO] El usuario: luis ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: jorge ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: james ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: johan ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: kevin ya existe -> no se creara un nuevo archivo
+[INFO] antidad de Estudiantes en EXCELENTE: 
+[INFO] Cantidad de Estudiantes en SOBRESALIENTE: 
+[INFO] Cantidad de Estudiantes en REGULAR: 
+[INFO] Cantidad de Estudiantes en INSUFICIENTE: 
+[INFO] Cantidad de Estudiantes en DEFICIENTE: 
+
+--------------------------------------------------------------------------------
+Programa iniciado: Sat Nov 05 00:43:10 2022
+
+[INFO] El usuario: luis ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: jorge ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: james ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: johan ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: kevin ya existe -> no se creara un nuevo archivo
+[INFO] Cantidad de Estudiantes en EXCELENTE: 1
+[INFO] Cantidad de Estudiantes en SOBRESALIENTE: 0
+[INFO] Cantidad de Estudiantes en REGULAR: 0
+[INFO] Cantidad de Estudiantes en INSUFICIENTE: 0
+[INFO] Cantidad de Estudiantes en DEFICIENTE: 0
+
+--------------------------------------------------------------------------------
+Programa iniciado: Sat Nov 05 13:21:53 2022
+
+[INFO] El usuario: luis ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: jorge ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: james ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: johan ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: kevin ya existe -> no se creara un nuevo archivo
+
+--------------------------------------------------------------------------------
+Programa iniciado: Sat Nov 05 13:22:04 2022
+
+[INFO] El usuario: luis ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: jorge ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: james ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: johan ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: kevin ya existe -> no se creara un nuevo archivo
+[INFO] Cantidad de Estudiantes en EXCELENTE: 0
+[INFO] Cantidad de Estudiantes en SOBRESALIENTE: 0
+[INFO] Cantidad de Estudiantes en REGULAR: 0
+[INFO] Cantidad de Estudiantes en INSUFICIENTE: 1
+[INFO] Cantidad de Estudiantes en DEFICIENTE: 0
+[INFO] Porcentaje de Aprobacion: 100.000000
+[INFO] Porcentaje Excelente: 0.000000
+[INFO] Asignatura mas aprobados: Informatica
+
+--------------------------------------------------------------------------------
+Programa iniciado: Sat Nov 05 13:34:51 2022
+
+[INFO] El usuario: luis ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: jorge ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: james ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: johan ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: kevin ya existe -> no se creara un nuevo archivo
+[INFO] Cantidad de Estudiantes en EXCELENTE: 0
+[INFO] Cantidad de Estudiantes en SOBRESALIENTE: 0
+[INFO] Cantidad de Estudiantes en REGULAR: 1
+[INFO] Cantidad de Estudiantes en INSUFICIENTE: 0
+[INFO] Cantidad de Estudiantes en DEFICIENTE: 0
+[INFO] Porcentaje de Aprobacion: 100.000000%
+[INFO] Porcentaje Excelente: 0.000000%
+[INFO] Asignatura mas aprobados: Fisica
+
+--------------------------------------------------------------------------------
+Programa iniciado: Sat Nov 05 13:36:14 2022
+
+[INFO] El usuario: luis ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: jorge ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: james ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: johan ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: kevin ya existe -> no se creara un nuevo archivo
+[INFO] Cantidad de Estudiantes en EXCELENTE: 0
+[INFO] Cantidad de Estudiantes en SOBRESALIENTE: 0
+[INFO] Cantidad de Estudiantes en REGULAR: 0
+[INFO] Cantidad de Estudiantes en INSUFICIENTE: 1
+[INFO] Cantidad de Estudiantes en DEFICIENTE: 0
+[INFO] Porcentaje de Aprobacion: 0.000000%
+[INFO] Porcentaje Excelente: 0.000000%
+[INFO] Asignatura mas aprobados: 
+
+--------------------------------------------------------------------------------
+Programa iniciado: Sat Nov 05 13:37:43 2022
+
+[INFO] El usuario: luis ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: jorge ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: james ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: johan ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: kevin ya existe -> no se creara un nuevo archivo
+[INFO] Cantidad de Estudiantes en EXCELENTE: 0
+[INFO] Cantidad de Estudiantes en SOBRESALIENTE: 0
+[INFO] Cantidad de Estudiantes en REGULAR: 1
+[INFO] Cantidad de Estudiantes en INSUFICIENTE: 0
+[INFO] Cantidad de Estudiantes en DEFICIENTE: 0
+[INFO] Porcentaje de Aprobacion: 100.000000%
+[INFO] Porcentaje Excelente: 0.000000%
+[INFO] Asignatura mas aprobados: Informatica
+[INFO] Estudiante con la menor nota: luis
+
+--------------------------------------------------------------------------------
+Programa iniciado: Sat Nov 05 13:40:11 2022
+
+[INFO] El usuario: luis ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: jorge ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: james ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: johan ya existe -> no se creara un nuevo archivo
+[INFO] El usuario: kevin ya existe -> no se creara un nuevo archivo
+[INFO] Cantidad de Estudiantes en EXCELENTE: 0
+[INFO] Cantidad de Estudiantes en SOBRESALIENTE: 0
+[INFO] Cantidad de Estudiantes en REGULAR: 1
+[INFO] Cantidad de Estudiantes en INSUFICIENTE: 0
+[INFO] Cantidad de Estudiantes en DEFICIENTE: 0
+[INFO] Porcentaje de Aprobacion: 100.000000%
+[INFO] Porcentaje Excelente: 0.000000%
+[INFO] Asignatura mas aprobados: Informatica
+[INFO] Estudiante con la menor nota: luis
+
+--------------------------------------------------------------------------------
+Programa iniciado: Sat Nov 05 13:41:24 2022
+
+[INFO] Usuario Creado: luis
+[INFO] Usuario Creado: jorge
+[INFO] Usuario Creado: james
+[INFO] Usuario Creado: johan
+[INFO] Usuario Creado: kevin
+[INFO] Cantidad de Estudiantes en EXCELENTE: 0
+[INFO] Cantidad de Estudiantes en SOBRESALIENTE: 0
+[INFO] Cantidad de Estudiantes en REGULAR: 0
+[INFO] Cantidad de Estudiantes en INSUFICIENTE: 1
+[INFO] Cantidad de Estudiantes en DEFICIENTE: 0
+[INFO] Porcentaje de Aprobacion: 100.000000%
+[INFO] Porcentaje Excelente: 0.000000%
+[INFO] Asignatura mas aprobados: Informatica
+[INFO] Estudiante con la menor nota: luis
