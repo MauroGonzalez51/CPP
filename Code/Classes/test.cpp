@@ -9,10 +9,10 @@ class Personas {
 
 class Estudiantes : public Personas {
     private:
-        string name, code;
+        string nombre, code;
         int age;
     public:
-        Estudiantes(string name, string code, int age) {
+        Estudiantes(string name, string code, int age) : Personas(nombre, code) {
             this -> name = name;
             this -> code = code;
             this -> age = age;
