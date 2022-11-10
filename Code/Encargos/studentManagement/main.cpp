@@ -371,6 +371,5 @@ int main(void) {
     inicializarUsuarios();
     pedirDatos();
     analizarDatos();
-
     return EXIT_SUCCESS;
 }
