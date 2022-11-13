@@ -5,7 +5,7 @@ int main(void) {
     do {
         std::cout << "-> ";
         std::getline(std::cin, line);
-        std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+        fflush (stdin);
         std::cout << ": " << line << std::endl;
     } while (true);
 }
