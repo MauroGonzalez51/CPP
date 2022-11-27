@@ -1,0 +1,4 @@
+Orden a nombre de: jose
+Producto ordenado: jugo
+Cantidad Ordenada: 7
+Total a pagar: 3171.000000

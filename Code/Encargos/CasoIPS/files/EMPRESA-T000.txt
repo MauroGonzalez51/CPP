@@ -1,0 +1,13 @@
+
+
+Nombre EMPRESA: T000
+Cantidad de Pacientes Evaluados: 2
+Porcentaje de Hombres Evaluados: 100.000000%
+Porcentaje de Mujeres Evaluadas: 0.000000%
+Edad Promedio
+Hombres: 17.000000
+Mujeres: 0.000000
+
+Pacientes Riesgo BAJO: 0
+Pacientes Riesgo MEDIO: 2
+Pacientes Riesgo ALTO: 0

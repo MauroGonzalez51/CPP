@@ -2,11 +2,10 @@
 //------------------------------------------------------------------------------------------------|
 
 #include <bits/stdc++.h>
-#include <conio.h>
 
 const std::string folderPath = "studentManagement/files/";
 
-const int cantidadEstudiantes = 1;
+const int cantidadEstudiantes = 5;
 
 struct {
     std::string nombre;
@@ -68,10 +67,27 @@ void escribirLog(const std::string mensaje) {
 // -------------------------- FUNCIONES PARA CREAR LAS INSTANCIAS DE LOS USUARIOS -------------------------------------------------------------|
 // -----------------------------------------------------------------------------------------------| >
 
+bool usuarioExiste(const std::string nombreUsuario, const std::string clave) {
+    std::ifstream archivo (folderPath + nombreUsuario + ".txt");
+    bool archivoExiste = false;
+    if (archivo.is_open()) {
+        std::string auxUsuario, auxClave;
+
+        std::getline(archivo, auxUsuario);
+        std::getline(archivo, auxClave);
+
+        if ((nombreUsuario == auxUsuario) && (clave == auxClave)) archivoExiste = true;
+    }
+
+    return archivoExiste;
+}
+
+// -----------------------------------------------------------------------------------------------| >
+
 bool crearUsuario(const std::string usuario, const std::string clave) {
     bool archivoCreado = false;
 
-    if (std::filesystem::exists(folderPath + usuario + ".txt"))
+    if (usuarioExiste(usuario, clave))
         escribirLog("El usuario: " + usuario +  " ya existe -> no se creara un nuevo archivo");
     else {
         std::ofstream archivo (folderPath + usuario + ".txt", std::ios::app);
