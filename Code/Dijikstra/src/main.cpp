@@ -9,8 +9,8 @@ class Graph {
 
     public:
         Graph(std::vector<std::vector<int>> &adjacent, std::vector <std::vector <float>> &weight) {
-            this -> adjacent = adjacent;
-            this -> weight = weight;
+            this -> adjacent = std::move(adjacent);
+            this -> weight = std::move(weight);
         }
 
         void dijikstra(int startNode, int endNode) {
@@ -47,7 +47,7 @@ class Graph {
                 count++;
             }
 
-            std::cout << "Distance between " << startNode << " and " << endNode << " is " << distance[endNode] << std::endl;
+            std::cout << std::format("Distance between {} and {} is {}", startNode, endNode, distance[endNode]) << std::endl;
             std::cout << "Route = " << endNode;
 
             int j = endNode;
