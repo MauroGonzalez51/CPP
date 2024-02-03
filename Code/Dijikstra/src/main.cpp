@@ -1,3 +1,13 @@
+/**
+ *  @group 
+ *      - Mauro Alonso Gonzalez Figueroa
+ *      - Juan Jose Jimenez Guardo
+ *      - Jorge Andres Herrera Monsalve
+ *      - Daniel David Herrera Acevedo
+ * 
+ * 
+*/
+
 #include <iostream>
 #include <vector>
 #include <float.h>
@@ -47,7 +57,7 @@ class Graph {
                 count++;
             }
 
-            std::cout << std::format("Distance between {} and {} is {}", startNode, endNode, distance[endNode]) << std::endl;
+            std::cout << "Distance between " << startNode << " and " << endNode << " is " << distance[endNode] << std::endl;
             std::cout << "Route = " << endNode;
 
             int j = endNode;
