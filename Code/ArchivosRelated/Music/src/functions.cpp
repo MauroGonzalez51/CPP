@@ -63,22 +63,16 @@ void readDirectory(const fs::path directory, std::vector <fs::path> &data) {
 }
 
 bool compareStrings(const std::string& str1, const std::string& str2) {
-    std::locale loc;
-    
-    return std::use_facet<std::collate<char>>(loc).compare(
-        str1.c_str(), str1.c_str() + str1.length(),
-        str2.c_str(), str2.c_str() + str2.length()) == 0;
+   std::wstring_convert <std::codecvt_utf8_utf16 <wchar_t>> converter;
+   std::wstring wstr1 = converter.from_bytes(str1);
+   std::wstring wstr2 = converter.from_bytes(str2);
+
+   return wstr1 == wstr2;
 }
 
 void removeDuplicates(std::vector<fs::path>& data, std::vector<fs::path>& musicData) {
     for (auto it = data.begin(); it != data.end(); ++it) {
         for (auto musicIt = musicData.begin(); musicIt != musicData.end(); ++musicIt) {
-            // if (it -> string() == musicIt -> string()) {
-            //     log(concatenate({"File removed from [ musicData ]:", it -> string()}));
-            //     musicData.erase(musicIt);
-            //     break;
-            // }
-
             if (compareStrings(it -> string(), musicIt -> string())) {
                 log(concatenate({"File removed from [ musicData ]:", it -> string()}));
                 musicData.erase(musicIt);
@@ -115,8 +109,8 @@ bool validateMsg(std::string msg) {
                 flag = false;
             }
         }
+            }
+        }
     }
     return flag;
-}
-
 

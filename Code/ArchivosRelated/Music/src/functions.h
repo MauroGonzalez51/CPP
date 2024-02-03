@@ -6,6 +6,9 @@
 #include <vector>
 #include <fstream>
 #include <initializer_list>
+#include <locale>
+#include <codecvt>
+#include <string>
 
 namespace fs = std::filesystem;
 
